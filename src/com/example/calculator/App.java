@@ -42,7 +42,7 @@ public class App {
             if (scanner.hasNextInt()) {
                 int number = scanner.nextInt();
                 scanner.nextLine(); //개행 문자 제거
-                if (number > 0) {
+                if (number >= 0) {
                     return number;
                 } else {
                     System.out.println("양의 정수를 입력해야 합니다. 다시 입력하세요.");
@@ -74,7 +74,7 @@ public class App {
     }
 
         // 연산 수행
-    public static void calculateOperate(int firstNumber, int secondNumber, int operatorSymbol) {
+    public static int calculateOperate(int firstNumber, int secondNumber, int operatorSymbol) {
         int result = 0;
         switch (operatorSymbol) {
             case 1:
@@ -92,6 +92,7 @@ public class App {
             case 4:
                 if (secondNumber == 0) {
                     System.out.println("0으로 나눌 수 없습니다!");
+                    return Integer.MIN_VALUE;
                 } else {
                     result = firstNumber / secondNumber;
                     System.out.println("나눗셈 결과: " + result);
@@ -99,7 +100,9 @@ public class App {
                 break;
             default:
                 System.out.println("올바른 연산자를 입력하세요.");
+                return Integer.MIN_VALUE;
         }
+        return result;
     }
 }
 
