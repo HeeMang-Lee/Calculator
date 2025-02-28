@@ -36,7 +36,14 @@ public class Calculator {
                 System.out.println("올바른 연산자를 입력하세요");
                 return Integer.MIN_VALUE;
         }
-        this.results.add(result); //연산 결과 저장
         return result;
+    }
+
+    public List<Integer> getResults() {
+        return results;
+    }
+
+    public void addResult(int result) {
+        this.results.add(result);
     }
 }

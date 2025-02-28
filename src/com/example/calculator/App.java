@@ -21,6 +21,7 @@ public class App {
 
             //연산 수행
             int result = calculator.calculate(firstNumber, secondNumber, operatorSymbol);
+            calculator.addResult(result); // 세터 수행
             if (result != Integer.MIN_VALUE) {
                 System.out.println("연산 결과 : " + result);
             }
