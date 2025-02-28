@@ -47,7 +47,7 @@ public class Calculator {
         this.results.add(result);
     }
 
-    public void deleteFirstResults() {
+    public void removeResult() {
         results.remove(0);
     }
 }
