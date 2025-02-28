@@ -46,4 +46,8 @@ public class Calculator {
     public void addResult(int result) {
         this.results.add(result);
     }
+
+    public void deleteFirstResults() {
+        results.remove(0);
+    }
 }

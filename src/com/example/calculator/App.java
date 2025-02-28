@@ -22,8 +22,8 @@ public class App {
 
             //연산 수행
             int result = calculator.calculate(firstNumber, secondNumber, operatorSymbol);
-            calculator.addResult(result); // 세터 메서드 수행(간접 접근을 통해 필드에 접근하여 수정)
             if (result != Integer.MIN_VALUE) {
+                calculator.addResult(result); // 세터 메서드 수행(간접 접근을 통해 필드에 접근하여 수정)
                 System.out.println("연산 결과 : " + result);
             }
 
