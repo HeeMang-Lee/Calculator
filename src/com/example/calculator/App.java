@@ -29,17 +29,24 @@ public class App {
 
             // 연산 이력 확인
             while (true) {
-                System.out.print("\n 연산 이력을 확인하시겠습니까? (Y/N): ");
+                System.out.print("\n 연산 이력을 확인하시겠습니까? (Y/N), 오래된 연산 이력을 삭제하려면 'D' 입력: ");
                 String historyInput = scanner.nextLine();
 
                 if (historyInput.equalsIgnoreCase("y")) { // 대소문자 구분 없이 비교
                     List<Integer> history = calculator.getResults(); // 게터 메서드 수행(간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현)
                     System.out.println(" 연산 이력: " + history);
                     break; // 연산 이력을 확인했으므로 반복문 종료
+                } else if (historyInput.equalsIgnoreCase("d")) {
+                    if (!calculator.getResults().isEmpty()){
+                        calculator.removeResult();
+                        System.out.println("가장 오래된 연산 이력이 삭제되었습니다.");
+                    }else {
+                        System.out.println("삭제할 연산 이력이 없습니다.");
+                    }
                 } else if (historyInput.equalsIgnoreCase("n")) { // 'N' 또는 'n' 입력 시 건너뛰기
                     break; // 'N' 또는 'n'을 입력하면 실행 여부 확인으로 진행
                 } else {
-                    System.out.println(" 잘못된 입력입니다. 'Y' 또는 'N'을 입력하세요.");
+                    System.out.println(" 잘못된 입력입니다. 'Y','N','D' 중 하나를 입력하세요.");
                 }
             }
 
