@@ -2,7 +2,7 @@ package com.example.calculator;
 
 import java.util.Scanner;
 
-public class Calculator {
+public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -87,7 +87,7 @@ public class Calculator {
                 break;
             case 3:
                 result = firstNumber * secondNumber;
-                System.out.println("✖곱셈 결과: " + result);
+                System.out.println("곱셈 결과: " + result);
                 break;
             case 4:
                 if (secondNumber == 0) {
