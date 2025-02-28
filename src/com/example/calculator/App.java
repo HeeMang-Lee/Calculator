@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -21,10 +22,27 @@ public class App {
 
             //연산 수행
             int result = calculator.calculate(firstNumber, secondNumber, operatorSymbol);
-            calculator.addResult(result); // 세터 수행
+            calculator.addResult(result); // 세터 메서드 수행(간접 접근을 통해 필드에 접근하여 수정)
             if (result != Integer.MIN_VALUE) {
                 System.out.println("연산 결과 : " + result);
             }
+
+            // 연산 이력 확인
+            while (true) {
+                System.out.print("\n 연산 이력을 확인하시겠습니까? (Y/N): ");
+                String historyInput = scanner.nextLine();
+
+                if (historyInput.equalsIgnoreCase("y")) { // 대소문자 구분 없이 비교
+                    List<Integer> history = calculator.getResults(); // 게터 메서드 수행(간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현)
+                    System.out.println(" 연산 이력: " + history);
+                    break; // 연산 이력을 확인했으므로 반복문 종료
+                } else if (historyInput.equalsIgnoreCase("n")) { // 'N' 또는 'n' 입력 시 건너뛰기
+                    break; // 'N' 또는 'n'을 입력하면 실행 여부 확인으로 진행
+                } else {
+                    System.out.println(" 잘못된 입력입니다. 'Y' 또는 'N'을 입력하세요.");
+                }
+            }
+
 
             //실행 여부 확인
             System.out.print("\n 계속 이용하려면 아무 키나 입력하세요, 종료하려면 'exit' 입력: ");
