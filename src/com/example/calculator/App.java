@@ -6,7 +6,9 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator calculator = new ArithmeticCalculator();
+//        Calculator calculator = new Calculator();
+
 
         while (true) {
             System.out.println("\n 계산을 수행합니다.");
@@ -17,15 +19,23 @@ public class App {
             // 두 번째 양의 정수 입력
             int secondNumber = getPositiveInt(scanner);
 
-            // 연산자 입력
-            int operatorSymbol = getOperatorSymbol(scanner);
+//            // 연산자 입력
+            OperatorType operator = getOerator(scanner);
+//            int operatorSymbol = getOperatorSymbol(scanner);
 
             //연산 수행
-            int result = calculator.calculate(firstNumber, secondNumber, operatorSymbol);
-            if (result != Integer.MIN_VALUE) {
-                calculator.addResult(result); // 세터 메서드 수행(간접 접근을 통해 필드에 접근하여 수정)
+            try{
+                int result = calculator.calculate(firstNumber,secondNumber,operator);
+                calculator.addResults(result);
                 System.out.println("연산 결과 : " + result);
+            } catch (ArithmeticException e){
+                System.out.println("오류 : "+e.getMessage());
             }
+//            int result = calculator.calculate(firstNumber, secondNumber, operatorSymbol);
+//            if (result != Integer.MIN_VALUE) {
+//                calculator.addResult(result); // 세터 메서드 수행(간접 접근을 통해 필드에 접근하여 수정)
+//                System.out.println("연산 결과 : " + result);
+//            }
 
             // 연산 이력 확인
             while (true) {
@@ -38,7 +48,7 @@ public class App {
                     break; // 연산 이력을 확인했으므로 반복문 종료
                 } else if (historyInput.equalsIgnoreCase("d")) {
                     if (!calculator.getResults().isEmpty()){
-                        calculator.removeResult();
+                        calculator.removeResults();
                         System.out.println("가장 오래된 연산 이력이 삭제되었습니다.");
                     }else {
                         System.out.println("삭제할 연산 이력이 없습니다.");
@@ -84,24 +94,35 @@ public class App {
         }
     }
 
-        // 연산자 선택 받기
-    public static int getOperatorSymbol(Scanner scanner) {
-        while (true) {
-            System.out.print("사칙연산 기호의 숫자를 선택하세요 (1.더하기 2.빼기 3.곱하기 4.나누기): ");
-            if (scanner.hasNextInt()) {
-                int operator = scanner.nextInt();
-                scanner.nextLine();
-                if (operator >= 1 && operator <= 4) {
-                    return operator;
-                } else {
-                    System.out.println("1에서 4의 숫자를 입력해야 합니다. 다시 입력하세요.");
-                }
-            } else {
-                System.out.println("숫자가 아닙니다. 다시 입력하세요.");
-                scanner.next(); // 잘못된 입력 제거
+        // 연산자 선택 받기 (enem 변환)
+    public static OperatorType getOerator(Scanner scanner){
+        while(true){
+            System.out.print("연산자를 입력하세요 (+,-,*,/): ");
+            String input = scanner.nextLine().trim();
+            try{
+                return OperatorType.parseOperator(input);
+            } catch (IllegalArgumentException e){
+                System.out.println("올바른 연산자를 입력하세요.");
             }
         }
     }
+//    public static int getOperatorSymbol(Scanner scanner) {
+//        while (true) {
+//            System.out.print("사칙연산 기호의 숫자를 선택하세요 (1.더하기 2.빼기 3.곱하기 4.나누기): ");
+//            if (scanner.hasNextInt()) {
+//                int operator = scanner.nextInt();
+//                scanner.nextLine();
+//                if (operator >= 1 && operator <= 4) {
+//                    return operator;
+//                } else {
+//                    System.out.println("1에서 4의 숫자를 입력해야 합니다. 다시 입력하세요.");
+//                }
+//            } else {
+//                System.out.println("숫자가 아닙니다. 다시 입력하세요.");
+//                scanner.next(); // 잘못된 입력 제거
+//            }
+//        }
+//    }
 
 //        // 연산 수행
 //    public static int calculateOperate(int firstNumber, int secondNumber, int operatorSymbol) {
