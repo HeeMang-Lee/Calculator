@@ -48,6 +48,8 @@ public class Calculator {
     }
 
     public void removeResult() {
-        results.remove(0);
+        if(!results.isEmpty()) {
+            results.remove(0);
+        }
     }
 }
