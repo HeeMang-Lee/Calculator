@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ArithmeticCalculator {
     // 속성
-    private final List<Integer> results;
+    private final List<Double> results;
 
     // 생성자
     public ArithmeticCalculator() {
@@ -13,18 +13,18 @@ public class ArithmeticCalculator {
     }
 
     // 기능
-    public int calculate(int firstNumber,int secondNumber,OperatorType operator) {
-        int result = operator.apply(firstNumber,secondNumber);
+    public <T extends Number> calculate(T firstNumber,T secondNumber,OperatorType operator) {
+        double result = operator.apply(firstNumber,secondNumber);
         return result;
     }
 
     // 게터 기능 활용 : 연산 기록 조회
-    public List<Integer> getResults(){
+    public List<Double> getResults(){
         return results;
     }
 
     // 세터 기능 활용 : 연산 결과 저장
-    public void addResults(int result){
+    public void addResults(double result){
         this.results.add(result);
     }
 
