@@ -13,7 +13,7 @@ public class ArithmeticCalculator {
     }
 
     // 기능
-    public <T extends Number> calculate(T firstNumber,T secondNumber,OperatorType operator) {
+    public <T extends Number> double calculate(T firstNumber,T secondNumber,OperatorType operator) {
         double result = operator.apply(firstNumber,secondNumber);
         return result;
     }

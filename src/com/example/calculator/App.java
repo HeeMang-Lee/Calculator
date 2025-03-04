@@ -13,11 +13,11 @@ public class App {
         while (true) {
             System.out.println("\n 계산을 수행합니다.");
 
-            // 첫 번째 양의 정수 입력
-            int firstNumber = getPositiveInt(scanner);
+            // 첫 번째 숫자 입력
+            Number firstNumber = getNumber(scanner);
 
-            // 두 번째 양의 정수 입력
-            int secondNumber = getPositiveInt(scanner);
+            // 두 번째 숫자 입력
+            Number secondNumber = getNumber(scanner);
 
 //            // 연산자 입력
             OperatorType operator = getOerator(scanner);
@@ -25,7 +25,7 @@ public class App {
 
             //연산 수행
             try{
-                int result = calculator.calculate(firstNumber,secondNumber,operator);
+                double result = calculator.calculate(firstNumber,secondNumber,operator);
                 calculator.addResults(result);
                 System.out.println("연산 결과 : " + result);
             } catch (ArithmeticException e){
@@ -43,7 +43,7 @@ public class App {
                 String historyInput = scanner.nextLine();
 
                 if (historyInput.equalsIgnoreCase("y")) { // 대소문자 구분 없이 비교
-                    List<Integer> history = calculator.getResults(); // 게터 메서드 수행(간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현)
+                    List<Double> history = calculator.getResults(); // 게터 메서드 수행(간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현)
                     System.out.println(" 연산 이력: " + history);
                     break; // 연산 이력을 확인했으므로 반복문 종료
                 } else if (historyInput.equalsIgnoreCase("d")) {
@@ -75,18 +75,14 @@ public class App {
 
 
     }
-        // 양의 정수를 입력받는 메서드
-        public static int getPositiveInt(Scanner scanner){
+        // 숫자(정수 혹은 실수)를 입력받는 메서드
+        public static Number getNumber(Scanner scanner){
         while (true) {
-            System.out.print("첫 번째 양의 정수를 입력하세요: ");
-            if (scanner.hasNextInt()) {
-                int number = scanner.nextInt();
+            System.out.print("숫자를 입력하세요 (정수 또는 실수): ");
+            if (scanner.hasNextDouble()) {
+                double number = scanner.nextDouble();
                 scanner.nextLine(); //개행 문자 제거
-                if (number >= 0) {
-                    return number;
-                } else {
-                    System.out.println("양의 정수를 입력해야 합니다. 다시 입력하세요.");
-                }
+                return number % 1 == 0 ? (int) number : number ; // 3항 연산자로 정수면 int, 아니면 double 반환
             } else {
                 System.out.println("숫자가 아닙니다. 다시 입력하세요.");
                 scanner.next(); // 잘못된 입력 제거
@@ -94,7 +90,7 @@ public class App {
         }
     }
 
-        // 연산자 선택 받기 (enem 변환)
+        // 연산자 선택 받기 (enum 변환)
     public static OperatorType getOerator(Scanner scanner){
         while(true){
             System.out.print("연산자를 입력하세요 (+,-,*,/): ");
