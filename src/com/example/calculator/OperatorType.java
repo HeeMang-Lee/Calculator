@@ -3,29 +3,29 @@ package com.example.calculator;
 public enum OperatorType {
     ADD("+"){
         @Override
-        public int apply(int a, int b){
-            return a+b;
+        public <T extends Number> apply(T a, T b){
+            return a.doubleValue()+b.doubleValue();
         }
     },
     SUBTRACT("-"){
         @Override
-        public int apply(int a, int b){
-            return a - b;
+        public <T extends Number> apply(T a, T b){
+            return a.doubleValue() - b.doubleValue();
         }
     },
     MULTIPLY("*"){
         @Override
-        public int apply(int a, int b){
-            return a * b;
+        public <T extends Number> apply(T a, T b){
+            return a.doubleValue() * b.doubleValue();
         }
     },
     DIVIDE("/"){
         @Override
-        public int apply(int a, int b){
-            if (b == 0){
+        public <T extends Number> apply(T a, T b){
+            if (b.doubleValue() == 0){
                 throw new ArithmeticException("0으로 나눌 수 없습니다.");
             }
-            return a / b;
+            return a.doubleValue() / b.doubleValue();
         }
     };
 
@@ -34,7 +34,7 @@ public enum OperatorType {
     OperatorType(String symbol){
         this.symbol = symbol;
     }
-    public abstract int apply(int a, int b);
+    public abstract <T extends Number> double apply (T a, T b);
 
     public static OperatorType parseOperator(String input) {
         for (OperatorType op : values()) {
