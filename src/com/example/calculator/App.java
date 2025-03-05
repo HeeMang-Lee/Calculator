@@ -37,6 +37,8 @@ public class App {
 //                System.out.println("연산 결과 : " + result);
 //            }
 
+            checkResults(scanner,calculator);
+
             // 연산 이력 확인
             while (true) {
                 System.out.print("\n 연산 이력을 확인하시겠습니까? (Y/N), 오래된 연산 이력을 삭제하려면 'D' 입력: ");
@@ -104,15 +106,33 @@ public class App {
     }
 
     //특정 값보다 큰 연산 결과를 조회하는 메서드
-    public static void checkResults(Scanner scanner,ArithmeticCalculator calculator){
-        System.out.print("\n 특정 값보다 큰 연산 결과를 확인하시겠습니까? (Y/N): ");
-        String input = scanner.nextLine().trim();
+    public static void checkResults(Scanner scanner,ArithmeticCalculator calculator) {
+        while (true) {
+            System.out.print("\n 특정 값보다 큰 연산 결과를 확인하시겠습니까? (Y/N): ");
+            String input = scanner.nextLine().trim();
 
-        if (input.equalsIgnoreCase("y")){
-            System.out.print("기준 값을 입력하세요.");
-            if(scanner.hasNextDouble()){
-                double refValue = scanner.nextDouble();
+            if (input.equalsIgnoreCase("y")) {
+                System.out.print("기준 값을 입력하세요. :");
+                if (scanner.hasNextDouble()) {
+                    double refValue = scanner.nextDouble();
+                    scanner.nextLine(); // 개행 문자 제거
 
+                    List<Double> filterResults = calculator.filterResults(refValue);
+
+                    if (filterResults.isEmpty()) {
+                        System.out.println("해당 값보다 큰 연산 결과가 없습니다.");
+                    } else {
+                        System.out.println(refValue + "보다 큰 연산 결과: " + filterResults);
+                    }
+                } else {
+                    System.out.println("숫자가 아닙니다. 다시 입력하세요.");
+                    scanner.next();
+                }
+            }else if(input.equalsIgnoreCase("n")){
+                System.out.println("특정 값보다 큰 연산 결과 확인을 종료합니다.");
+                break;
+            }else {
+                System.out.println("잘못된 입력입니다. 'Y' 혹은 'N' 중 하나를 입력하세요." );
             }
         }
     }
