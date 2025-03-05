@@ -68,7 +68,7 @@ public class App {
                 return number % 1 == 0 ? (int) number : number ; // 3항 연산자로 정수면 int, 아니면 double 반환
             } else {
                 System.out.println("숫자가 아닙니다. 다시 입력하세요.");
-                scanner.next(); // 잘못된 입력 제거
+                scanner.nextLine(); // 잘못된 입력 제거
             }
         }
     }
@@ -128,12 +128,11 @@ public class App {
 
                     if (filterResults.isEmpty()) {
                         System.out.println("해당 값보다 큰 연산 결과가 없습니다.");
-                    } else {
-                        System.out.println(refValue + "보다 큰 연산 결과: " + filterResults);
                     }
+                        System.out.println(refValue + "보다 큰 연산 결과: " + filterResults);
                 } else {
                     System.out.println("숫자가 아닙니다. 다시 입력하세요.");
-                    scanner.next();
+                    scanner.nextLine(); // 개행 문자 제거
                 }
             }else if(input.equalsIgnoreCase("n")){
                 System.out.println("특정 값보다 큰 연산 결과 확인을 종료합니다.");
