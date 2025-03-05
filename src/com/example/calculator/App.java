@@ -20,7 +20,7 @@ public class App {
             Number secondNumber = getNumber(scanner);
 
 //            // 연산자 입력
-            OperatorType operator = getOerator(scanner);
+            OperatorType operator = getOperator(scanner);
 //            int operatorSymbol = getOperatorSymbol(scanner);
 
             //연산 수행
@@ -74,7 +74,7 @@ public class App {
     }
 
         // 연산자 선택 받기 (enum 변환)
-    public static OperatorType getOerator(Scanner scanner){
+    public static OperatorType getOperator(Scanner scanner){
         while(true){
             System.out.print("연산자를 입력하세요 (+,-,*,/): ");
             String input = scanner.nextLine().trim();
