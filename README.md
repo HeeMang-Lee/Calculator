@@ -28,15 +28,18 @@ Lambda, Stream, Enum을 활용하여 유지보수성과 가독성을 고려하�
 - 문제: 숫자 입력 후 개행 문자가 남아 `nextLine()` 호출 시 버퍼에 남아 있는 값이 읽히는 문제
 - 해결: `scanner.next()` → `scanner.nextLine()`으로 수정하여 입력 버퍼를 정리
 
+```java
 System.out.print("기준 값을 입력하세요: ");
 if (scanner.hasNextDouble()) {
     double refValue = scanner.nextDouble();
     scanner.nextLine(); // 개행 문자 제거하여 입력 버퍼 정리
 }
+```
 ### 2️. for 루프를 활용한 연산자 검색
 연산자를 Enum에서 찾을 때, Optional 방식 대신 for 루프 유지
 이유: Optional을 사용하면 예외 처리를 상위 계층에서 해야 하지만, for 루프 방식은 즉시 예외 처리가 가능하기 때문
 
+```java
 public static OperatorType parseOperator(String input) {
     for (OperatorType op : values()) {
         if (op.getSymbol().equals(input)) {
@@ -45,6 +48,7 @@ public static OperatorType parseOperator(String input) {
     }
     throw new IllegalArgumentException("올바른 연산자를 입력하세요.");
 }
+```
 Optional 방식 대신, 예외 처리를 명확하게 수행하는 방식 유지
 
 ##  개발 과정에서 배운 점
