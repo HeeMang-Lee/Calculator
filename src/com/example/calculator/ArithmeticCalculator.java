@@ -36,9 +36,9 @@ public class ArithmeticCalculator {
         }
     }
 
-    public List<Double> filterResults(double input){
+    public List<Double> filterResults(double refValue){
         return results.stream() // 스트림 생성
-                .filter(result -> result > input) // 사용자가 입력한 값보다 큰 값만 필터링
+                .filter(result -> result > refValue) // 사용자가 입력한 값보다 큰 값만 필터링
                 .collect(Collectors.toList()); // 리스트로 변환하여 반환
     }
 

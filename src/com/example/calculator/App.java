@@ -102,6 +102,20 @@ public class App {
             }
         }
     }
+
+    //특정 값보다 큰 연산 결과를 조회하는 메서드
+    public static void checkResults(Scanner scanner,ArithmeticCalculator calculator){
+        System.out.print("\n 특정 값보다 큰 연산 결과를 확인하시겠습니까? (Y/N): ");
+        String input = scanner.nextLine().trim();
+
+        if (input.equalsIgnoreCase("y")){
+            System.out.print("기준 값을 입력하세요.");
+            if(scanner.hasNextDouble()){
+                double refValue = scanner.nextDouble();
+
+            }
+        }
+    }
 //    public static int getOperatorSymbol(Scanner scanner) {
 //        while (true) {
 //            System.out.print("사칙연산 기호의 숫자를 선택하세요 (1.더하기 2.빼기 3.곱하기 4.나누기): ");
