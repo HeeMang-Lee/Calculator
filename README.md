@@ -24,6 +24,8 @@ Lambda, Stream, Enum을 활용하여 유지보수성과 가독성을 고려하�
 3. **실행:** `java App`  
 
 ##  트러블슈팅 (문제 해결 과정)
+## 🚀 트러블슈팅 문서
+더 자세한 문제 해결 과정은 [여기에서 확인](https://morethan-log-zigv.vercel.app/spring12)할 수 있습니다.
 ###  1️. `Scanner.next()` 사용 시 입력 버퍼 문제 발생
 - 문제: 숫자 입력 후 개행 문자가 남아 `nextLine()` 호출 시 버퍼에 남아 있는 값이 읽히는 문제
 - 해결: `scanner.next()` → `scanner.nextLine()`으로 수정하여 입력 버퍼를 정리
