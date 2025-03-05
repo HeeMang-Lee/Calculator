@@ -2,6 +2,7 @@ package com.example.calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArithmeticCalculator {
     // 속성
@@ -33,6 +34,12 @@ public class ArithmeticCalculator {
         if (!results.isEmpty()){ // 빈 리스트 예외 방지
             results.remove(0); // 가장 먼저 등록된 연산 결과 삭제
         }
+    }
+
+    public List<Double> filterResults(double input){
+        return results.stream() // 스트림 생성
+                .filter(result -> result > input) // 사용자가 입력한 값보다 큰 값만 필터링
+                .collect(Collectors.toList()); // 리스트로 변환하여 반환
     }
 
 
